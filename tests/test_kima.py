@@ -45,7 +45,7 @@ def test_keplerian():
 ## pykima.display
 
 def test_percentiles():
-    from pykima.display import percentile68_ranges, percentile68_ranges_latex
+    from pykima.utils import percentile68_ranges, percentile68_ranges_latex
 
     a = np.random.uniform(size=int(1e6))
     b = np.random.randn(int(1e6))
@@ -69,11 +69,17 @@ def test_percentiles():
 
 
 def test_planet_mass():
-    from pykima.display import get_planet_mass
+    from pykima.utils import get_planet_mass
     # get_planet_mass(P, K, e, star_mass=1.0, full_output=False, verbose=False)
     npt.assert_allclose(get_planet_mass(0., 0., 0.), (0., 0.))
     npt.assert_allclose(get_planet_mass(np.random.rand(), 0., np.random.rand()), 
                         (0., 0.))
+
+
+def test_planet_semimajor_axis():
+    from pykima.utils import get_planet_semimajor_axis
+    # get_planet_semimajor_axis(P, K, star_mass=1.0, full_output=False, verbose=False)
+    pass
 
 
 def test_KimaResults():
