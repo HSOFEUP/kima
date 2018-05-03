@@ -23,6 +23,10 @@ class Data
 
 		int index_fibers;
 
+		const char* datafile;
+		const char* dataunits;
+		int dataskip;
+
 		// Getters
 		int N() const {return t.size();}
 
