@@ -703,10 +703,21 @@ class KimaResults(object):
         ax.set(xlabel='fiber offset (m/s)', ylabel='posterior samples')
         plt.show()
 
-    def hist_vsys(self):
+    def hist_vsys(self, show_offsets=True):
         """ Plot the histogram of the posterior for the systemic velocity """
         vsys = self.posterior_sample[:,-1]
         _, ax = plt.subplots(1,1)
         ax.hist(vsys/1e3)
         ax.set(xlabel='vsys (m/s)', ylabel='posterior samples')
         plt.show()
+
+        if show_offsets and self.multi:
+            n_inst_offsets = self.inst_offsets.shape[1]
+            _, axs = plt.subplots(1, n_inst_offsets, sharey=True,
+                                  figsize=(n_inst_offsets*3, 5),
+                                  squeeze=True)
+            for i in range(n_inst_offsets):
+                a = self.inst_offsets[:,i]
+                axs[i].hist(a)
+                axs[i].set_xlabel(f'offset {i+1}')
+            plt.show()
