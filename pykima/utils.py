@@ -120,3 +120,11 @@ def get_planet_semimajor_axis(P, K, star_mass=1.0, full_output=False, verbose=Fa
             return a.mean(), a.std(), a
         else:
             return a.mean(), a.std()
+
+
+
+def read_datafile(filename, skip=2):
+    data = np.loadtxt(filename, usecols=(0,1,2))
+    obs = np.loadtxt(filename, usecols=(3,))
+    return data, obs
+
